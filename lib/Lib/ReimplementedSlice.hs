@@ -27,23 +27,23 @@ reimplementedSlice offset len t@(Text.Internal.Text u16data off prevLen)
     offset1 = min prevLen $ max 0 offset
     len1 = min (prevLen - offset1) $ max 0 len
 
-    offset2 = if isHighSurrogate offset1 then offset1 + 1 else offset1
-    len2 = if isLowSurrogate (offset2 + len1 - 1) then len1 - 1 else len1
+    offset2 = if isLowSurrogate offset1 then offset1 + 1 else offset1
+    len2 = if isHighSurrogate (offset2 + len1 - 1) then len1 - 1 else len1
 
-    -- | Return whether the code unit at the given index ends a surrogate pair.
-    -- Such a code unit must be preceded by a low surrogate in valid UTF-16.
+    -- | Return whether the code unit at the given index starts a surrogate pair.
+    -- Such a code unit must be followed by a low surrogate in valid UTF-16.
     isHighSurrogate :: Int -> Bool
     isHighSurrogate !i =
       let
         w = Text.Array.unsafeIndex u16data (off + i)
       in
-        i >= 0 && i < prevLen && w >= 0xdc00 && w <= 0xdfff
+        i >= 0 && i < prevLen && w >= 0xd800 && w <= 0xdbff
 
-    -- | Return whether the code unit at the given index starts a surrogate pair.
-    -- Such a code unit must be followed by a high surrogate in valid UTF-16.
+    -- | Return whether the code unit at the given index ends a surrogate pair.
+    -- Such a code unit must be preceded by a high surrogate in valid UTF-16.
     isLowSurrogate :: Int -> Bool
     isLowSurrogate !i =
       let
         w = Text.Array.unsafeIndex u16data (off + i)
       in
-        i >= 0 && i < prevLen && w >= 0xd800 && w <= 0xdbff
+        i >= 0 && i < prevLen && w >= 0xdc00 && w <= 0xdfff
