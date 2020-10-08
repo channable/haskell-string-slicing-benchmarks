@@ -1,0 +1,45 @@
+name:                text-take-drop
+version:             0.1.0.0
+github:              "channable/text-take-drop"
+license:             BSD3
+author:              "Channable"
+copyright:           "2020 Channable"
+
+extra-source-files:
+- README.md
+
+description:         Please see the README on GitHub at <https://github.com/Channable/text-take-drop#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- text == 1.2.4.0
+- criterion
+
+# Note: -fproc-alignment=64 is set because benchmarks are otherwise sensitive
+# to arbitrary changes to code. See:
+# https://gitlab.haskell.org/ghc/ghc/-/issues/16556
+ghc-options: >-
+  -Wall
+  -O
+  -fproc-alignment=64
+
+library:
+  source-dirs: lib
+
+benchmarks:
+  bench:
+    main: Bench.hs
+    source-dirs: bench
+    dependencies:
+      - text-take-drop
+
+executables:
+  text-take-drop-exe:
+    main: Main.hs
+    source-dirs: app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - text-take-drop
