@@ -34,12 +34,12 @@ stack run
 The benchmark can be run as follows:
 
 ```
-stack build --bench --benchmark-arguments "--regress allocated:iters +RTS -T"
+stack build --bench --benchmark-arguments "--regress allocated:iters +RTS -T -RTS --output slice-benchmark-output.html"
 ```
 
 ## Benchmark results
 
-For ease of access, an example run of this benchmark is pasted below:
+For ease of access, an example run of this benchmark is pasted below. Please also see [slice-benchmark-output.html](https://raw.githubusercontent.com/channable/haskell-string-slicing-benchmarks/main/slice-benchmark-output.html) for a formatted report.
 
 <details>
 
@@ -47,139 +47,139 @@ For ease of access, an example run of this benchmark is pasted below:
 
 ```
 benchmarking long-0-1000/naiveSlice
-time                 33.30 μs   (33.29 μs .. 33.31 μs)
+time                 33.47 μs   (33.42 μs .. 33.50 μs)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 33.31 μs   (33.30 μs .. 33.32 μs)
-std dev              24.25 ns   (17.86 ns .. 36.01 ns)
+mean                 33.46 μs   (33.44 μs .. 33.49 μs)
+std dev              94.49 ns   (79.48 ns .. 129.0 ns)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
-  iters              220480.001 (220479.866 .. 220480.183)
-  y                  2536.535   (2252.212 .. 2836.450)
+  iters              220480.000 (220479.845 .. 220480.174)
+  y                  2537.838   (2277.194 .. 2849.359)
 
 benchmarking long-0-1000/sliceWithRule
-time                 830.5 ns   (830.0 ns .. 831.1 ns)
+time                 832.0 ns   (831.6 ns .. 832.6 ns)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 830.6 ns   (830.3 ns .. 831.0 ns)
-std dev              1.215 ns   (866.8 ps .. 1.600 ns)
+mean                 833.8 ns   (833.0 ns .. 835.1 ns)
+std dev              3.473 ns   (2.361 ns .. 5.475 ns)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
   iters              64.000     (63.997 .. 64.004)
-  y                  2537.432   (2319.959 .. 2781.529)
+  y                  2537.432   (2331.796 .. 2764.745)
 
 benchmarking long-0-1000/sequencedSlice
-time                 830.4 ns   (830.0 ns .. 830.9 ns)
+time                 831.9 ns   (831.4 ns .. 832.5 ns)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 830.2 ns   (830.1 ns .. 830.6 ns)
-std dev              719.7 ps   (414.6 ps .. 1.262 ns)
+mean                 831.7 ns   (831.3 ns .. 832.1 ns)
+std dev              1.347 ns   (1.077 ns .. 1.677 ns)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
-  iters              64.000     (63.996 .. 64.003)
-  y                  2550.996   (2349.912 .. 2782.213)
+  iters              64.000     (63.997 .. 64.003)
+  y                  2550.996   (2322.145 .. 2770.748)
 
 benchmarking long-0-1000/noInlineTakeSlice
-time                 630.4 ns   (630.4 ns .. 630.5 ns)
+time                 633.6 ns   (632.8 ns .. 634.3 ns)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 630.5 ns   (630.4 ns .. 630.6 ns)
-std dev              247.5 ps   (190.3 ps .. 344.8 ps)
+mean                 633.7 ns   (633.3 ns .. 634.2 ns)
+std dev              1.512 ns   (1.191 ns .. 2.145 ns)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
   iters              111.999    (111.997 .. 112.002)
-  y                  2562.905   (2351.828 .. 2777.875)
+  y                  2562.905   (2359.615 .. 2786.755)
 
 benchmarking long-0-1000/reimplementedSlice
-time                 9.581 ns   (9.576 ns .. 9.586 ns)
+time                 9.604 ns   (9.599 ns .. 9.611 ns)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 9.581 ns   (9.576 ns .. 9.587 ns)
-std dev              17.31 ps   (12.88 ps .. 26.66 ps)
+mean                 9.593 ns   (9.586 ns .. 9.600 ns)
+std dev              23.16 ps   (19.10 ps .. 28.99 ps)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
   iters              32.000     (32.000 .. 32.000)
-  y                  2547.530   (2375.442 .. 2726.963)
+  y                  2545.529   (2367.776 .. 2724.270)
 
 benchmarking long-5000-1000/naiveSlice
-time                 258.8 μs   (257.7 μs .. 259.7 μs)
-                     1.000 R²   (0.999 R² .. 1.000 R²)
-mean                 260.4 μs   (260.3 μs .. 260.5 μs)
-std dev              340.3 ns   (284.6 ns .. 483.1 ns)
+time                 261.6 μs   (261.4 μs .. 262.0 μs)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 262.0 μs   (261.8 μs .. 262.3 μs)
+std dev              898.7 ns   (685.1 ns .. 1.276 μs)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
-  iters              1380479.830 (1380478.707 .. 1380481.163)
-  y                  2550.560   (2209.409 .. 2956.324)
+  iters              1380479.800 (1380478.706 .. 1380481.203)
+  y                  2596.150   (2230.501 .. 2976.236)
 
 benchmarking long-5000-1000/sliceWithRule
-time                 4.941 μs   (4.937 μs .. 4.945 μs)
+time                 4.944 μs   (4.941 μs .. 4.947 μs)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 4.941 μs   (4.938 μs .. 4.944 μs)
-std dev              9.959 ns   (8.231 ns .. 12.75 ns)
+mean                 4.944 μs   (4.941 μs .. 4.947 μs)
+std dev              9.658 ns   (7.494 ns .. 12.64 ns)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
-  iters              64.000     (63.980 .. 64.025)
-  y                  2556.215   (2301.293 .. 2812.799)
+  iters              64.002     (63.979 .. 64.027)
+  y                  2545.394   (2291.716 .. 2798.238)
 
 benchmarking long-5000-1000/sequencedSlice
-time                 4.928 μs   (4.927 μs .. 4.929 μs)
+time                 4.961 μs   (4.958 μs .. 4.964 μs)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 4.928 μs   (4.928 μs .. 4.929 μs)
-std dev              2.141 ns   (1.538 ns .. 3.274 ns)
+mean                 4.965 μs   (4.962 μs .. 4.969 μs)
+std dev              11.33 ns   (8.871 ns .. 15.81 ns)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
-  iters              64.003     (63.982 .. 64.027)
-  y                  2536.957   (2287.603 .. 2789.697)
+  iters              63.998     (63.979 .. 64.023)
+  y                  2548.072   (2303.543 .. 2790.820)
 
 benchmarking long-5000-1000/noInlineTakeSlice
-time                 4.728 μs   (4.727 μs .. 4.729 μs)
+time                 4.757 μs   (4.751 μs .. 4.761 μs)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 4.728 μs   (4.727 μs .. 4.729 μs)
-std dev              2.996 ns   (1.956 ns .. 4.959 ns)
+mean                 4.754 μs   (4.750 μs .. 4.760 μs)
+std dev              14.94 ns   (11.78 ns .. 20.47 ns)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
-  iters              111.997    (111.979 .. 112.018)
-  y                  2549.480   (2308.067 .. 2813.699)
+  iters              112.000    (111.980 .. 112.024)
+  y                  2530.181   (2286.261 .. 2778.268)
 
 benchmarking long-5000-1000/reimplementedSlice
-time                 9.578 ns   (9.572 ns .. 9.584 ns)
+time                 9.578 ns   (9.570 ns .. 9.585 ns)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 9.582 ns   (9.577 ns .. 9.588 ns)
-std dev              19.41 ps   (16.78 ps .. 23.28 ps)
+mean                 9.575 ns   (9.569 ns .. 9.584 ns)
+std dev              26.19 ps   (17.69 ps .. 42.94 ps)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
   iters              32.000     (32.000 .. 32.000)
-  y                  2557.433   (2386.045 .. 2737.391)
+  y                  2547.417   (2362.943 .. 2728.119)
 
 benchmarking long-all/naiveSlice
-time                 336.3 μs   (334.4 μs .. 338.1 μs)
-                     1.000 R²   (0.999 R² .. 1.000 R²)
-mean                 337.2 μs   (337.0 μs .. 337.8 μs)
-std dev              1.063 μs   (502.3 ns .. 2.127 μs)
+time                 339.1 μs   (338.7 μs .. 339.5 μs)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 339.2 μs   (339.0 μs .. 339.7 μs)
+std dev              1.058 μs   (715.5 ns .. 1.942 μs)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
-  iters              2180455.702 (2180454.223 .. 2180457.434)
-  y                  2601.634   (2211.059 .. 3041.305)
+  iters              2180456.037 (2180454.350 .. 2180458.030)
+  y                  2549.701   (2182.160 .. 2997.128)
 
 benchmarking long-all/sliceWithRule
-time                 7.148 ns   (7.146 ns .. 7.150 ns)
+time                 7.212 ns   (7.206 ns .. 7.219 ns)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 7.151 ns   (7.149 ns .. 7.154 ns)
-std dev              8.042 ps   (6.674 ps .. 10.32 ps)
+mean                 7.221 ns   (7.215 ns .. 7.227 ns)
+std dev              20.43 ps   (15.41 ps .. 27.77 ps)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
   iters              32.000     (32.000 .. 32.000)
-  y                  2539.400   (2357.504 .. 2717.880)
+  y                  2543.365   (2366.879 .. 2748.933)
 
 benchmarking long-all/sequencedSlice
-time                 7.366 ns   (7.364 ns .. 7.370 ns)
+time                 7.387 ns   (7.380 ns .. 7.393 ns)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 7.364 ns   (7.362 ns .. 7.367 ns)
-std dev              9.487 ps   (7.025 ps .. 13.13 ps)
+mean                 7.384 ns   (7.378 ns .. 7.389 ns)
+std dev              17.29 ps   (14.02 ps .. 21.51 ps)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
   iters              32.000     (32.000 .. 32.000)
-  y                  2550.189   (2379.684 .. 2737.583)
+  y                  2539.507   (2366.150 .. 2720.584)
 
 benchmarking long-all/noInlineTakeSlice
-time                 11.24 ns   (11.23 ns .. 11.24 ns)
+time                 11.26 ns   (11.26 ns .. 11.28 ns)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 11.25 ns   (11.25 ns .. 11.26 ns)
-std dev              10.06 ps   (8.245 ps .. 14.08 ps)
+mean                 11.30 ns   (11.29 ns .. 11.31 ns)
+std dev              33.88 ps   (26.06 ps .. 45.82 ps)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
   iters              80.000     (80.000 .. 80.000)
-  y                  2553.608   (2383.067 .. 2741.460)
+  y                  2543.438   (2368.504 .. 2730.605)
 
 benchmarking long-all/reimplementedSlice
-time                 9.945 ns   (9.939 ns .. 9.950 ns)
+time                 9.959 ns   (9.950 ns .. 9.968 ns)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 9.959 ns   (9.956 ns .. 9.962 ns)
-std dev              10.28 ps   (8.421 ps .. 13.34 ps)
+mean                 9.971 ns   (9.964 ns .. 9.982 ns)
+std dev              30.94 ps   (22.28 ps .. 43.46 ps)
 allocated:           1.000 R²   (1.000 R² .. 1.000 R²)
   iters              32.000     (32.000 .. 32.000)
-  y                  2555.236   (2389.603 .. 2737.914)
+  y                  2541.649   (2377.578 .. 2732.795)
 ```
 
 </details>
