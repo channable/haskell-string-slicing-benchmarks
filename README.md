@@ -39,7 +39,7 @@ stack build --bench --benchmark-arguments "--regress allocated:iters +RTS -T -RT
 
 ## Benchmark results
 
-For ease of access, an example run of this benchmark is pasted below. Please also see [slice-benchmark-output.html](https://raw.githubusercontent.com/channable/haskell-string-slicing-benchmarks/main/slice-benchmark-output.html) for a formatted report.
+For ease of access, an example run of this benchmark is pasted below. Please also see `slice-benchmark-output.html` for a formatted report.
 
 <details>
 
