@@ -41,7 +41,16 @@ stack build --bench --benchmark-arguments "--regress allocated:iters +RTS -T -RT
 
 ## Benchmark results
 
-For ease of access, an example run of this benchmark is pasted below. Please also see `slice-benchmark-output.html` for a formatted report.
+Below is a graph of the benchmark results. Note that the Y-axis is logarithmic. This is because of the large difference between the values of `naiveSlice` and that of the other functions.
+
+<a href="https://tech.channable.com/images/bottlenecked-on-text-benchmarks.svg">
+<img
+  alt="Benchmark results of the original function and the solutions."
+  src="https://tech.channable.com/images/bottlenecked-on-text-benchmarks.svg"
+/>
+</a>
+
+The raw results are as follows:
 
 <details>
 
