@@ -11,7 +11,9 @@ slice offset len = T.take len . T.drop offset
 
 This repository demonstrates that this function is indeed slower and takes up more memory than one would expect, and why exactly this happens.
 
-This repository is part of a blog post that explains this problem and its solutions in more detail. This blog post will be uploaded shortly.
+This repository is part of a blog post that explains this problem and its solutions in more detail:
+
+https://tech.channable.com/posts/2020-10-15-bottlenecked-on-haskells-text.html
 
 ## Walking through the investigation
 
